@@ -1,5 +1,9 @@
 package com.personal.challenges;
 
+import lombok.AllArgsConstructor;
+
+import java.util.Arrays;
+
 //https://edabit.com/challenge/eBkknBKXvMm8bDo8M
 //
 //6174 is known as one of Kaprekar's constants, after the Indian mathematician D. R. Kaprekar. Number 6174 is notable for the following rule:
@@ -35,6 +39,78 @@ package com.personal.challenges;
 //If the subtracted number is less than 1000, add an extra zero to that number. The number 1111 will equal 0000, so this number (1111) is invalid. If you're still unclear, please check the comments section.
 public class KaprekarsConstant {
 
-    
+    public int timesToKaprekar(int inputNumber){
+        if(inputNumber == 6174){
+            return 0;
+        }
+
+        int number = sortAsc(inputNumber);
+        int invertedNumber = invertNumber(number);
+
+        if(number > invertedNumber) {
+            return 1 + timesToKaprekar(number - invertedNumber);
+        } else {
+            return 1 + timesToKaprekar(invertedNumber - number);
+        }
+    }
+
+    private int sortAsc(int inputNumber) {
+
+        int[] digitArray;
+        int outputNumber = 0;
+
+        int digitAmount = digitAmount(inputNumber);
+
+        //coloca num array
+        digitArray = new int[digitAmount];
+        for (int i = 0; i < digitAmount; i++) {
+            digitArray[i] = inputNumber % 10;
+            inputNumber /= 10;
+        }
+
+        //ordena
+        Arrays.sort(digitArray);
+
+        //tira do array pra um número
+        for (int i = 0; i < digitAmount; i++){
+            outputNumber = outputNumber * 10 + digitArray[i];
+        }
+
+        return outputNumber;
+
+    }
+
+    private int invertNumber(int number) {
+        int invertedNumber = 0;
+
+        while (number != 0) {
+            int digito = number % 10; // Obtém o último dígito
+            invertedNumber = invertedNumber * 10 + digito; // Adiciona o dígito invertido
+            number /= 10; // Remove o último dígito do número original
+
+            if(number == 0){
+                if(digitAmount(invertedNumber) == 3){
+                    invertedNumber *= 10;
+                }
+                if(digitAmount(invertedNumber) == 2){
+                    invertedNumber *= 100;
+                }
+            }
+        }
+        return invertedNumber;
+    }
+
+    private int digitAmount(int n) {
+        int digitAmount = 0;
+
+        //ve quantos dígitos tem
+        while (n != 0){
+            digitAmount++;
+            n /= 10;
+        }
+
+        return digitAmount;
+    }
+
 
 }

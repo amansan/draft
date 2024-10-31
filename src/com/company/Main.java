@@ -1,14 +1,24 @@
 package com.company;
 
 import com.personal.anagram.Anagrams;
+import com.personal.challenges.KaprekarsConstant;
+import com.personal.challenges.StripURLParams;
+
+import java.util.Arrays;
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        //new Anagrams("babbage", "C:\\Users\\Andrei\\IdeaProjects\\Draft\\data\\wl.txt");
+//        int times = new KaprekarsConstant().timesToKaprekar(6621);
 
-        //opaa
+//        System.out.println(new KaprekarsConstant().timesToKaprekar(6621));
+
+        String s = "https://edabit.com?a=2&b=2&a=3";
+
+        String result = new StripURLParams().stripUrlParams(s, new String[]{"c"});
+
+        System.out.println(result);
 
     }
 }
