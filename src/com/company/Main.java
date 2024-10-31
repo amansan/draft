@@ -16,7 +16,7 @@ public class Main {
 
         String s = "https://edabit.com?a=2&b=2&a=3";
 
-        String result = new StripURLParams().stripUrlParams(s, new String[]{"c"});
+        String result = new StripURLParams().stripUrlParams(s, "c", "b");
 
         System.out.println(result);
 

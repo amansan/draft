@@ -19,6 +19,14 @@ import java.util.*;
  */
 public class StripURLParams {
 
+
+    public String stripUrlParams(String... params){
+
+        String[] paramsToStrip = new String[params.length-1];
+        System.arraycopy(params, 1, paramsToStrip, 0, paramsToStrip.length);
+
+        return stripUrlParams(params[0], paramsToStrip);
+    }
     public String stripUrlParams(String url){
         return stripUrlParams(url, null);
     }
